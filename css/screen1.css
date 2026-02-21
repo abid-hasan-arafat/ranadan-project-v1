@@ -1,0 +1,97 @@
+/* ══════════════════════════════════════════════════════
+   SCREEN 1 — ARRIVAL
+══════════════════════════════════════════════════════ */
+#s1 .sky {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #0d1b4b 0%, #070d2a 35%, #030611 70%, #000005 100%);
+}
+#s1 #s1Stars { position:absolute; inset:0; width:100%; height:100%; }
+
+/* moon */
+#s1 .moon-wrap {
+  position:absolute; left:50%; top:0;
+  transform:translateX(-50%);
+  opacity:0;
+  animation:moonRise 5s cubic-bezier(.25,.46,.45,.94) 1.5s forwards;
+}
+@keyframes moonRise {
+  0%  { opacity:0; top:110%; }
+  20% { opacity:1; }
+  100%{ opacity:1; top:12%; }
+}
+#s1 .crescent { position:relative; width:110px; height:110px; }
+#s1 .crescent .mf {
+  position:absolute; inset:0; border-radius:50%;
+  background:radial-gradient(circle at 38% 38%, #fff9e6 0%, #f5dfa0 25%, #e8c97a 55%, #c9971a 85%, #a07010 100%);
+  box-shadow:0 0 30px rgba(232,201,122,.7),0 0 80px rgba(232,201,122,.35),0 0 160px rgba(200,160,60,.2);
+  animation:moonPulse 4s ease-in-out infinite;
+}
+#s1 .crescent .mb {
+  position:absolute; width:90px; height:90px; border-radius:50%;
+  background:#030611; top:5px; left:22px;
+}
+@keyframes moonPulse {
+  0%,100%{ box-shadow:0 0 30px rgba(232,201,122,.7),0 0 80px rgba(232,201,122,.35),0 0 160px rgba(200,160,60,.2); }
+  50%    { box-shadow:0 0 45px rgba(232,201,122,.9),0 0 110px rgba(232,201,122,.5),0 0 200px rgba(200,160,60,.3); }
+}
+
+/* atmosphere */
+#s1 .atmo {
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom, transparent 0%, transparent 48%,
+    rgba(10,20,40,.3) 62%, rgba(8,15,30,.7) 78%, rgba(4,8,18,1) 100%);
+}
+/* city */
+#s1 .city { position:absolute; bottom:0; left:-4%; right:-4%; height:22%; }
+#s1 .city svg { width:100%; height:100%; display:block; }
+/* horizon glow */
+#s1 .hglow {
+  position:absolute; bottom:20%; left:0; right:0; height:3px;
+  background:linear-gradient(to right, transparent 5%, rgba(232,201,122,.12) 20%,
+    rgba(232,201,122,.3) 42%, rgba(232,201,122,.12) 62%, rgba(200,120,80,.08) 80%, transparent 95%);
+  filter:blur(2px); opacity:0;
+  animation:fadeCity 3s ease 4s forwards;
+}
+#s1 .lanterns-wrap { position:absolute; bottom:20%; left:0; right:0; opacity:0; animation:fadeCity 2s ease 5s forwards; }
+@keyframes fadeCity { to { opacity:1; } }
+
+/* text layer */
+#s1 .textLayer {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:1.4rem; z-index:10;
+}
+#s1 .t-ar {
+  font-family:'Noto Naskh Arabic',serif; font-size:clamp(1rem,3vw,1.5rem);
+  color:rgba(232,201,122,.7); letter-spacing:.2em;
+  opacity:0; animation:textUp 2s ease 6s forwards;
+}
+#s1 .t-main {
+  font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,8vw,6.5rem);
+  font-weight:300; font-style:italic; letter-spacing:.08em; line-height:1;
+  background:linear-gradient(135deg,#f5dfa0 0%,#e8c97a 40%,#fff9e6 60%,#c99b3a 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  opacity:0; animation:textUp 2.5s ease 6.8s forwards;
+}
+#s1 .t-sub {
+  font-family:'Cormorant Garamond',serif; font-size:clamp(.7rem,2vw,1rem);
+  letter-spacing:.35em; text-transform:uppercase; color:rgba(200,185,150,.55);
+  opacity:0; animation:textUp 2s ease 8s forwards;
+}
+@keyframes textUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+/* CTA */
+#s1 .ctaWrap {
+  position:absolute; bottom:clamp(3rem,8vh,6rem); left:50%; transform:translateX(-50%);
+  z-index:20; opacity:0; animation:textUp 2s ease 9.5s forwards;
+}
+
+/* skip */
+#s1 .skipBtn {
+  position:absolute; bottom:1.5rem; right:1.5rem; z-index:20;
+  font-family:'Cormorant Garamond',serif; font-size:.7rem; letter-spacing:.2em;
+  text-transform:uppercase; color:rgba(255,255,255,.2); background:none; border:none;
+  cursor:pointer; opacity:0; animation:textUp 1s ease 4s forwards;
+  transition:color .3s;
+}
+#s1 .skipBtn:hover { color:rgba(255,255,255,.5); }
